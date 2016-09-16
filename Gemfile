@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
-
-
+ruby "2.3.0"
 #for navbar
 gem 'bootstrap-sass', '~> 3.3.6'
 
@@ -16,10 +15,10 @@ gem "simple_calendar", "~> 2.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
-# Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
 #get postgresql
-#gem ''
+gem 'pg'
+#rails12factor
+gem 'rails_12factor', group: :production #dont use in dev
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
