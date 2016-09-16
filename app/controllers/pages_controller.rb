@@ -12,4 +12,8 @@ class PagesController < ApplicationController
   #pages/profile
   def profile
   end
+  
+  #pages/admin
+  def admin
+  end
 end

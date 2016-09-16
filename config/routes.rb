@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :users
   resources :meetings
   #define root URL
@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   get 'index' => 'pages#index'
   get 'home' => 'pages#home'
   get 'profile' => 'pages#profile'
-
+  get 'admin' => 'pages#admin'
+  get 'users' => 'users#index'
+  
+  #make admin button route
+  put 'admin/:id' => 'users#make_admin', :as => "make_admin"
+  put 'admin/:id' => 'users#remove_admin', :as => "remove_admin"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

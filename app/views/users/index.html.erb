@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>List all Users</h2>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Admin</th>
+        <th>Toggle Admin</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @users = User.all %>
+    <% @users.each do |user| %>
+      <tr>
+        <%= content_tag :td do %>
+            <%= user.firstname %> <%= user.surname %>
+        <%end%>
+        <%= content_tag :td do %>
+            <%= user.email %>
+        <%end%>
+        <% if user.try(:admin?) %>
+                <td>yes</td>
+            <%else %>
+                <td>no</td>
+        <%end%>
+        <%if user.try(:admin?) %>
+            <td><%= button_to "Remove Admin", {action: "remove_admin", id: user.id }, method: :put %></td>
+        <%else%>
+            <td><%= button_to "Make Admin", {action: "make_admin", id: user.id }, method: :put %></td>
+        <%end%>
+      </tr>
+    <%end%>
+    </tbody>
+  </table>
+</div>

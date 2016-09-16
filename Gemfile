@@ -7,6 +7,10 @@ gem 'bootstrap-sass', '~> 3.3.6'
 #Devise for managing logins and auth
 gem 'devise'
 
+#search
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 #simple_calendar
 gem "simple_calendar", "~> 2.0"
 

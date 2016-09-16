@@ -1,0 +1,8 @@
+<!-- render differently if user is not an admin. -->
+<% if current_user.admin? %>
+   
+  <h1>Logged in as an administrator <%= current_user.firstname + ' ' + current_user.surname %></h1>
+  
+<% else %>
+  <%= render 'pages/home' %>
+<% end %>
