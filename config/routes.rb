@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   
   #make admin button route
   put 'admin/:id' => 'users#toggle_admin', :as => "toggle_admin"
+  #delete users
+  match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user_path
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

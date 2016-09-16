@@ -1,32 +1,50 @@
-<div class="container">
-  <h2>List all Users</h2>
-  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Admin</th>
-        <th>Toggle Admin</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @users = User.all %>
-    <% @users.each do |user| %>
-      <tr>
-        <%= content_tag :td do %>
-            <%= user.firstname %> <%= user.surname %>
-        <%end%>
-        <%= content_tag :td do %>
-            <%= user.email %>
-        <%end%>
-        <% if user.try(:admin?) %>
-                <td>yes</td>
-            <%else %>
-                <td>no</td>
-        <%end%>
-            <td><%= button_to "Toggle Admin", {action: "toggle_admin", id: user.id }, method: :put %></td>
-      </tr>
-    <%end%>
-    </tbody>
-  </table>
-</div>
+  <div class="container">
+    <h2>List all Users</h2>
+    <table class="table table-condensed table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th><center>Name</center></th>
+          <th><center>Email</center></th>
+          <th><center>Admin</center></th>
+          <%if current_user.try(:admin?) %>
+            <th><center>Toggle Admin</center></th>
+          <%else%>
+          <%end%>
+          <% if current_user.try(:admin?) %>
+            <th><center>Delete Account</center></th>
+          <%else%>
+          <%end%>
+        </tr>
+      </thead>
+      <tbody>
+      <% @users = User.all %>
+      <% @users.each do |user| %>
+          <tr>
+            <%= content_tag :td do %>
+                <%= user.firstname %> <%= user.surname %>
+            <%end%>
+            <%= content_tag :td do %>
+                <%= user.email %>
+            <%end%>
+            <% if user.try(:admin?) %>
+                    <td>yes</td>
+                <%else %>
+                    <td>no</td>
+            <%end%>
+            <%if current_user.try(:admin?) %>
+              <% if user.try(:admin?) %>
+                <td><center><%= link_to "Remove Admin", {action: "toggle_admin", id: user.id }, class: "btn btn-warning", method: :put, data: { confirm: "Are you sure you want to remove "+user.firstname + " " + user.surname+"'s admin privileges?"} %></center></td>
+              <%else%>
+                <td><center><%= link_to "Add Admin", {action: "toggle_admin", id: user.id }, class: "btn btn-info", method: :put, data: { confirm: "Are you sure you want to give "+user.firstname + " " + user.surname+" admin privileges?"} %></center></td>
+              <%end%>
+            <%else%>
+            <%end%>
+                <% if current_user.try(:admin?) %>
+                  <td><center><%= link_to "Delete", admin_destroy_user_path_path(user), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete" + user.email + " ?" } %></center></td>
+                <%else%>
+                <%end%>
+          </tr>
+      <%end%>
+      </tbody>
+    </table>
+  </div>

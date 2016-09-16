@@ -13,4 +13,16 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
+  #delete accounts
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    
+    if @user.destroy
+      redirect_to users_url, notice: "user deleted"
+    end
+    
+  end
+      
+  
 end
