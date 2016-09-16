@@ -24,11 +24,7 @@
             <%else %>
                 <td>no</td>
         <%end%>
-        <%if user.try(:admin?) %>
-            <td><%= button_to "Remove Admin", {action: "remove_admin", id: user.id }, method: :put %></td>
-        <%else%>
-            <td><%= button_to "Make Admin", {action: "make_admin", id: user.id }, method: :put %></td>
-        <%end%>
+            <td><%= button_to "Toggle Admin", {action: "toggle_admin", id: user.id }, method: :put %></td>
       </tr>
     <%end%>
     </tbody>
