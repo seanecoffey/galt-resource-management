@@ -1,6 +1,7 @@
+<% if user_signed_in? %>
   <div class="container">
-    <h2>List all Users</h2>
-    <table class="table table-condensed table-bordered table-striped table-hover">
+    <h2><center>All Galt Users</center></h2>
+    <table class="table table-condensed table-bordered table-hover">
       <thead>
         <tr>
           <th><center>Name</center></th>
@@ -19,17 +20,17 @@
       <tbody>
       <% @users = User.all %>
       <% @users.each do |user| %>
-          <tr>
+          <tr class="<%= 'warning' if user==current_user %>">
             <%= content_tag :td do %>
-                <%= user.firstname %> <%= user.surname %>
+               <a><center><%= user.firstname %> <%= user.surname %></center></a>
             <%end%>
             <%= content_tag :td do %>
-                <%= user.email %>
+                <center><%= user.email %></center>
             <%end%>
             <% if user.try(:admin?) %>
-                    <td>yes</td>
+                    <td><center>Yes</center></td>
                 <%else %>
-                    <td>no</td>
+                    <td><center>No</center></td>
             <%end%>
             <%if current_user.try(:admin?) %>
               <% if user.try(:admin?) %>
@@ -48,3 +49,6 @@
       </tbody>
     </table>
   </div>
+  <%else%>
+  <p>You are not signed in.</p>
+  <%end%>
