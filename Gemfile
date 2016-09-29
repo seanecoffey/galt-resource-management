@@ -13,6 +13,8 @@ gem 'elasticsearch-rails'
 #simple_calendar
 gem "simple_calendar", "~> 2.0"
 
+gem 'sqlite3' #remove in production
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 #get postgresql

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160916012610) do
+ActiveRecord::Schema.define(version: 20160917092358) do
 
   create_table "meetings", force: :cascade do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160916012610) do
     t.string   "firstname"
     t.string   "surname"
     t.boolean  "admin",                  default: false
+    t.integer  "role",                   default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

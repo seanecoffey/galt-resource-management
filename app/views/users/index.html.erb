@@ -6,6 +6,7 @@
         <tr>
           <th><center>Name</center></th>
           <th><center>Email</center></th>
+          <th><center>Role</center></th>
           <th><center>Admin</center></th>
           <%if current_user.try(:admin?) %>
             <th><center>Toggle Admin</center></th>
@@ -27,6 +28,7 @@
             <%= content_tag :td do %>
                 <center><%= user.email %></center>
             <%end%>
+            <th><center><%= user.role %></center></th>
             <% if user.try(:admin?) %>
                     <td><center>Yes</center></td>
                 <%else %>
